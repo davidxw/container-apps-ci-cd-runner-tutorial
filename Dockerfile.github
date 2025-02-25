@@ -12,8 +12,9 @@ COPY github-actions-runner/entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 # install the azure cli as not root user using pip
-RUN pip install azure-cli
-ENV PATH="$PATH:/home/runner/.local/bin"
+# RUN pip install azure-cli
+# ENV PATH="$PATH:/home/runner/.local/bin"
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 # set the .net install dir to avoid permissions issues when/if using actions/setup-dotnet@v4
 ENV DOTNET_INSTALL_DIR="./.dotnet"
